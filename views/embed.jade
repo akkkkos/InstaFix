@@ -13,8 +13,6 @@ html(lang='en')
 
     if (v.Card != "")
       meta(name='twitter:card', content=v.Card)
-    if (v.Title != "")
-      meta(name='twitter:title', content=v.Title)
     if (v.ImageURL != "")
       meta(name='twitter:image', content=v.ImageURL)
     if (v.VideoURL != "")
@@ -23,11 +21,7 @@ html(lang='en')
       meta(name='twitter:player:stream', content=v.VideoURL)
       meta(name='twitter:player:stream:content_type', content='video/mp4')
 
-    if (v.VideoURL != "" || v.ImageURL != "")
-      meta(property='og:site_name', content='InstaFix')
-
     meta(property='og:url', content=v.URL)
-    meta(property='og:description', content=v.Description)
 
     if (v.ImageURL != "")
       meta(property='og:image', content=v.ImageURL)

@@ -42,11 +42,6 @@ func Embed(v *model.ViewsData, wr io.Writer) {
 		WriteEscString(v.Card, buffer)
 		buffer.WriteString(embed__3)
 	}
-	if v.Title != "" {
-		buffer.WriteString(embed__9)
-		WriteEscString(v.Title, buffer)
-		buffer.WriteString(embed__3)
-	}
 	if v.ImageURL != "" {
 		buffer.WriteString(embed__11)
 		WriteEscString(v.ImageURL, buffer)
@@ -62,13 +57,8 @@ func Embed(v *model.ViewsData, wr io.Writer) {
 		buffer.WriteString(embed__16)
 
 	}
-	if v.VideoURL != "" || v.ImageURL != "" {
-		buffer.WriteString(embed__17)
-	}
 	buffer.WriteString(embed__1)
 	WriteEscString(v.URL, buffer)
-	buffer.WriteString(embed__2)
-	WriteEscString(v.Description, buffer)
 	buffer.WriteString(embed__3)
 	if v.ImageURL != "" {
 		buffer.WriteString(embed__18)

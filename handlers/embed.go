@@ -77,14 +77,11 @@ func Embed(w http.ResponseWriter, r *http.Request) {
 	}
 
 	isDirect, _ := strconv.ParseBool(urlQuery.Get("direct"))
-	isGallery, _ := strconv.ParseBool(urlQuery.Get("gallery"))
 
 	// Get direct/gallery from header too, nginx query params is pain in the ass
 	embedType := r.Header.Get("X-Embed-Type")
 	if embedType == "direct" {
 		isDirect = true
-	} else if embedType == "gallery" {
-		isGallery = true
 	}
 
 	// Stories use mediaID (int) instead of postID
@@ -133,14 +130,8 @@ func Embed(w http.ResponseWriter, r *http.Request) {
 	var sb strings.Builder
 	sb.Grow(32) // 32 bytes should be enough for most cases
 
-	viewsData.Title = "@" + item.Username
-	// Gallery do not have any caption
-	if !isGallery {
-		viewsData.Description = item.Caption
-		if len(viewsData.Description) > 255 {
-			viewsData.Description = utils.Substr(viewsData.Description, 0, 250) + "..."
-		}
-	}
+	viewsData.Title = ""
+	viewsData.Description = ""
 
 	typename := item.Medias[max(1, mediaNum)-1].TypeName
 	isImage := strings.Contains(typename, "Image") || strings.Contains(typename, "StoryVideo")
